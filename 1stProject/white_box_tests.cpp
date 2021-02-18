@@ -107,7 +107,7 @@ TEST(Matrix, AddingMatrices)
 {
   Matrix m1(2, 2);
   Matrix m2(2, 2);
-  Matrix m4(3, 3);
+  Matrix m4(3, 4);
 
   std::vector<std::vector<double> > val1{{2, 4}, {4, 2}};
   std::vector<std::vector<double> > val2{{1, 1}, {1, 1}};
@@ -121,7 +121,7 @@ TEST(Matrix, AddingMatrices)
 
   try
   {
-    m1.operator*(m4);
+    m3.operator*(m4);
   }
   catch(const std::exception& e)
   {
