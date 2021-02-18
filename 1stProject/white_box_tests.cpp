@@ -153,7 +153,7 @@ TEST(Matrix, MultiplyMatrices)
 
   try
   {
-    m1.operator*(m4);
+    m1.operator*(m5);
   }
   catch(const std::exception& e)
   {
