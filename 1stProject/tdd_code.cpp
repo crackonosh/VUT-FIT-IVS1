@@ -15,7 +15,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <iostream>
 
 #include "tdd_code.h"
 
@@ -40,22 +39,19 @@ PriorityQueue::PriorityQueue()
 
 PriorityQueue::~PriorityQueue()
 {
+    if (m_pHead == NULL) return;
+    Element_t *tmp = m_pHead->pNext;
+    m_pHead->pNext = NULL;
+    while (tmp->pNext != NULL)
+    {
+        Element_t *hold = tmp->pNext;
+        delete(tmp);
+        tmp = hold;
+    }
+    delete(m_pHead);
+    m_pHead = NULL;
 }
 
-void PriorityQueue::print()
-{
-    Element_t *tmp = m_pHead;
-    std::cout << "DEBUG:    List: [";
-    while (tmp != NULL)
-    {
-        if (tmp->pNext != NULL)
-            std::cout << tmp->value << ", ";
-        else
-            std::cout << tmp->value;
-        tmp = tmp->pNext;
-    }
-    std::cout << "]\n";
-}
 void PriorityQueue::Insert(int value)
 {
     if (m_pHead == NULL)
