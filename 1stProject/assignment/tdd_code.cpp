@@ -132,12 +132,7 @@ bool PriorityQueue::Remove(int value)
         }
         tmp = tmp->pNext;
     }
-
-    Element_t *hold = tmp;
-    m_pHead = NULL;
-    delete(hold);
-    hold = NULL;
-    return true;
+    return false;
 }
 
 PriorityQueue::Element_t *PriorityQueue::Find(int value)
