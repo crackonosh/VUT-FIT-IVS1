@@ -41,6 +41,7 @@ TEST(EmptyTree, InsertNode)
     std::pair<bool, Node_t *> tmp = bt->InsertNode(3);
     bool val = std::get<0>(tmp);
     ASSERT_EQ(true, val);
+    ASSERT_EQ(tmp.second, bt->GetRoot());
     delete(bt);
 }
 TEST(EmptyTree, DeleteNode)
