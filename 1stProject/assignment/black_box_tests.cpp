@@ -94,19 +94,16 @@ TEST(NonEmptyTree, FindNode)
 TEST(TreeAxioms, Axiom1)
 {
     BinaryTree *bt = new BinaryTree;
-    std::vector<int> values = {2, 1, 5};
+    std::vector<int> values = {2, 1, 5, 4, 15, 32, 33, 7};
     std::vector<std::pair<bool, Node_t *> > outVal;
+    std::vector<BinaryTree::Node_t *> leafNodes;
     bt->InsertNodes(values, outVal);
+    bt->GetLeafNodes(leafNodes);
 
-    ASSERT_TRUE(bt->GetRoot() != NULL);
-    Node_t *newRoot = bt->GetRoot();
-    Node_t *left = newRoot->pLeft;
-    ASSERT_EQ(BinaryTree::BLACK, left->pLeft->color);
-    ASSERT_EQ(BinaryTree::BLACK, left->pRight->color);
-    Node_t *right = newRoot->pRight;
-    ASSERT_EQ(BinaryTree::BLACK, right->pLeft->color);
-    ASSERT_EQ(BinaryTree::BLACK, right->pRight->color);
-
+    for (BinaryTree::Node_t *el: leafNodes)
+    {
+        ASSERT_EQ(BinaryTree::BLACK, el->color);
+    }
     delete(bt);
 }
 TEST(TreeAxioms, Axiom2)
