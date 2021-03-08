@@ -14,6 +14,7 @@
  */
 
 #include <vector>
+#include <iostream>
 
 #include "gtest/gtest.h"
 
@@ -123,5 +124,34 @@ TEST(TreeAxioms, Axiom2)
     }
 
     delete(bt);
+}
+TEST(TreeAxioms, Axiom3)
+{
+    BinaryTree *bt = new BinaryTree; 
+    std::vector<int> values = {2, 1, 5, 4, 15, 32, 33, 7};
+    std::vector<std::pair<bool, Node_t *> > outVal;
+    std::vector<BinaryTree::Node_t *> leafNodes;
+    std::vector<int> leafLengths;
+    bt->InsertNodes(values, outVal);
+    bt->GetLeafNodes(leafNodes);
+
+    for (Node_t *el: leafNodes)
+    {
+        Node_t *tmp = el;
+        int length = 0;
+        while (tmp != bt->GetRoot())
+        {
+            if (tmp->pParent->color != RED)
+                length++;
+            tmp = tmp->pParent;
+        }
+        leafLengths.push_back(length);
+    }
+
+    int refLength = leafLengths[0];
+    for (int l: leafLengths)
+    {
+        ASSERT_EQ(refLength, l);
+    }
 }
 /*** Konec souboru black_box_tests.cpp ***/
