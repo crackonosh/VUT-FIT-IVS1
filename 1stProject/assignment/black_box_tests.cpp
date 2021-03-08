@@ -113,12 +113,12 @@ TEST(TreeAxioms, Axiom2)
     std::vector<std::pair<bool, Node_t *> > outVal;
     bt->InsertNodes(values, outVal);
 
-    for (int i = 0; i < values.size(); i++)
+    for (std::pair<bool, Node_t *> el: outVal)
     {
-        if (outVal[i].second->color == BinaryTree::RED)
+        if (el.second->color == BinaryTree::RED)
         {
-            ASSERT_EQ(BinaryTree::BLACK, outVal[i].second->pLeft->color);
-            ASSERT_EQ(BinaryTree::BLACK, outVal[i].second->pRight->color);
+            ASSERT_EQ(BinaryTree::BLACK, el.second->pLeft->color);
+            ASSERT_EQ(BinaryTree::BLACK, el.second->pRight->color);
         }
     }
 
